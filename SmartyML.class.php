@@ -97,7 +97,7 @@ private static function lang_load()
 	}
 	else
 	{
-		throw new SmartyException('Languagefile was not found');
+		throw new RuntimeException('Languagefile was not found');
 	}
 }
 
@@ -122,7 +122,7 @@ public static function setLanguage($lang = null)
 		// verifying Language
 		if (!in_array($lang, self::$languages))
 		{
-			throw new SmartyException('Given language is not valid!');
+			throw new RuntimeException('Given language is not valid!');
 		}
 		// NOTE: here could be a check, if language_file is found
 		// if not: here could be a warning

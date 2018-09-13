@@ -80,7 +80,7 @@ private static function lang_load()
 		foreach ($file as $row)
 		{
 			// ignore empty rows and comments
-			if (strlen($row) > 3 || substr($row, 0, 2) != '//')
+			if (strlen($row) > 3 && substr($row, 0, 2) != '//')
 			{
 				$keyval = explode('=', $row, 2);
 

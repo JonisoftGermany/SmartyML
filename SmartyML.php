@@ -152,6 +152,31 @@ class SmartyML extends Smarty
 		return $this->languages;
 	}
 
+	final public static function initBySmartyMlConfig(SmartyMLConfig $smarty_config, string $language = null) : self
+	{
+		$smarty_object = new self(
+				$smarty_config->getLangEnable(),
+				$smarty_config->getLangDefault(),
+				$language,
+				$smarty_config->getLangDir(),
+		);
+
+		$smarty_object->setTemplateDir($smarty_config->getTemplateDir());
+		$smarty_object->setCompileDir($smarty_config->getCompileDir());
+		$smarty_object->setCacheDir($smarty_config->getCacheDir());
+
+		$smarty_object->caching = $smarty_config->isCaching() ? Smarty::CACHING_LIFETIME_CURRENT : Smarty::CACHING_OFF;
+		$smarty_object->cache_lifetime = $smarty_config->getCacheLifetime();
+
+		$debug_mode = $smarty_config->isDebugMode();
+		$smarty_object->debugging = $debug_mode;
+		$smarty_object->compile_check = $debug_mode ? Smarty::COMPILECHECK_ON : Smarty::COMPILECHECK_OFF;
+		$smarty_object->force_compile = $debug_mode;
+
+		return $smarty_object;
+	}
+
+
 	/**
 	 * Test to see if valid cache exists for this template
 	 *

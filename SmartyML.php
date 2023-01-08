@@ -5,7 +5,7 @@
  * Smarty Multilingual 2.0
  *
  * @author Jonathan Stoll
- * @version 11
+ * @version 12
  */
 class SmartyML extends Smarty
 {
@@ -38,10 +38,11 @@ class SmartyML extends Smarty
 	 * @param string[] $allowed_languages List of allowed languages
 	 * @param string $default_language Default language, which must be element of allowed languages
 	 * @param null|string $language Current language or null for default language
+	 * @param null|string $locales_dir Optional: Directory where locale files are stored
 	 *
 	 * @throws SmartyException Language is invalid or filter couldn't been set up
 	 */
-	public function __construct(array $allowed_languages, string $default_language, string $language = null, string $locales_dir = self::DEFAULT_LOCALES_DIR)
+	public function __construct(array $allowed_languages, string $default_language, string $language = null, string $locales_dir = null)
 	{
 		$valid_default_language = in_array($default_language, $allowed_languages, true);
 		if (!$valid_default_language) {
@@ -58,7 +59,7 @@ class SmartyML extends Smarty
 		$this->languages = $allowed_languages;
 		$this->default_language = $default_language;
 		$this->language = $language ?? $default_language;
-		$this->locales_dir = $locales_dir;
+		$this->locales_dir = $locales_dir ?? self::DEFAULT_LOCALES_DIR;
 
 		// registers prefilter for language decode automatically
 		$this->registerFilter('pre', [$this, 'lang_decode']);

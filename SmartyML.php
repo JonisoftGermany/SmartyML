@@ -5,7 +5,7 @@
  * Smarty Multilingual 2.0
  *
  * @author Jonathan Stoll
- * @version 12
+ * @version 13
  */
 class SmartyML extends Smarty
 {
@@ -99,6 +99,7 @@ class SmartyML extends Smarty
 	{
 		// First: Load language
 		$this->lang_load();
+		$this->assign('lang', $this->language);
 
 		// Then: Parse ML-variables
 		foreach ($this->cached_variables as $variable_name => $variable_content) {
@@ -251,7 +252,6 @@ class SmartyML extends Smarty
 		}
 
 		$this->language = $lang;
-		$this->assign('lang', $lang);
 	}
 }
 

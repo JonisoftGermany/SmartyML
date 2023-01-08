@@ -1,5 +1,7 @@
 <?php
 
+use SPFW\system\config\SmartyMLConfig;
+
 
 /**
  * Smarty Multilingual 2.0
